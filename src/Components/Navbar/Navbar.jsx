@@ -18,6 +18,7 @@ const Navbar = () => {
         <li><NavLink to='All-Art'>All Art & craft items</NavLink></li>
         <li><NavLink to='Add-Art'>Add Craft Item</NavLink></li>
         <li><NavLink to='My-Art'>My Art & Craft List</NavLink></li>
+        <li><NavLink to='update-profile'>Update Profile</NavLink></li>
         <li><NavLink to='login'>Login</NavLink></li>
       </ul>
     </div>
@@ -29,6 +30,7 @@ const Navbar = () => {
         <li><NavLink to='All-Art'>All Art & craft items</NavLink></li>
         <li><NavLink to='Add-Art'>Add Craft Item</NavLink></li>
         <li><NavLink to='My-Art'>My Art & Craft List</NavLink></li>
+        <li><NavLink to='update-profile'>Update Profile</NavLink></li>
         <li><NavLink to='login'>Login</NavLink></li>
     </ul>
   </div>
@@ -37,7 +39,7 @@ const Navbar = () => {
                         user? <div className="dropdown tooltip dropdown-end" data-tip={user?.displayName || 'user name not found'}>
                             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                                 <div className="w-10 rounded-full">
-                                    <img src={user?.photoURL || "https://i.ibb.co/y0yrnYQ/1681283571946.jpg" } />
+                                    <img src={user?.photoURL || "" } />
                                 </div>
                             </label>
                             <ul tabIndex={0} className="menu menu-sm hover dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
@@ -50,9 +52,6 @@ const Navbar = () => {
                                         onClick={signOutUser}
                                         className="btn btn-sm  btn-ghost">Logout</button>
 
-                                </li>
-                                <li className="text-center">
-                                    <Link to='/update-profile'><button className="btn btn-sm btn-ghost">Update Profile</button></Link>
                                 </li>
                             </ul>
                         </div>

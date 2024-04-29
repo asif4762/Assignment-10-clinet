@@ -1,30 +1,31 @@
-import { useEffect } from "react";
-import UseData from "../../Components/Navbar/Hooks/UseData";
+import { useEffect, useState } from "react";
+import Cards from "../../Components/Cards/Cards";
+import Banner from "../../Components/Banner/Banner";
 
 const Home = () => {
-
-    const { data } = UseData();
-
-    console.log(data);
-
+const [userData, setUserData] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5500/users', {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json',
-            },
-            body: JSON.stringify(data[0])
-        })
+        fetch('http://localhost:5500/allCarts')
         .then(res => res.json())
-        .then(dat => {
-            console.log(dat);
-        })
-    }, [data])
+        .then(data => setUserData(data))
+    }, [])
+
+
+
+    console.log(userData);
 
     return (
-        <div>
-            <h1>I am Home</h1>            
-        </div>
+        <div className="">
+      <div className="max-w-[100%] lg:max-w-[80%] mx-auto mt-40 lg:mt-20">
+        <Banner></Banner>
+      </div>
+      <h1 className="text-center text-4xl font-bold mt-14">Arts & Crafts</h1>
+      <div className="grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mt-14">
+        {userData.map((item, index) => (
+          <Cards key={index} item={item} />
+        ))}
+      </div>
+    </div>
     );
 };
 

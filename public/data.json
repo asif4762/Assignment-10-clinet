@@ -1,5 +1,4 @@
-{
-    "products": [
+[
       {
         "imageURL": "url_to_image",
         "item_name": "Wooden Chair",
@@ -79,5 +78,5 @@
         "User_Name": "David Wilson"
       }
     ]
-  }
+
   
