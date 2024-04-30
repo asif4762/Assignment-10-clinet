@@ -21,11 +21,21 @@ const SingleItem = () => {
   <div className="hero-content flex-col">
     <img src={userData.imageURL} className="max-w-full rounded-lg shadow-2xl" />
     <div>
-      <h1 className="text-5xl font-bold">{userData.item_name}</h1>
-      <p className="py-6">{userData.shortdescription}</p>
-      <p><span className="font-bold">Price: </span> {userData.price}</p>
-      <p><span className="font-bold">Rating: </span>{userData.rating}</p>
-      <div className="flex gap-4">
+      <h1 className="text-6xl font-bold">{userData.item_name}</h1>
+      <p className="py-6 text-3xl">{userData.shortdescription}</p>
+      <div className="flex justify-around mt-4">
+      <p className="text-2xl"><span className="font-bold">Price: </span> {userData.price}$</p>
+      <p className="text-2xl"><span className="font-bold">Rating: </span>{userData.rating}</p>
+      </div>
+      <div className="flex justify-around mt-4">
+      <p className="text-2xl"><span className="font-bold">Processing Time: </span> {userData.processing_time}</p>
+      <p className="text-2xl"><span className="font-bold">Sub Category: </span>{userData.subcategory_Name}</p>
+      </div>
+      <div className="flex justify-around mt-4">
+      <p className="text-2xl"><span className="font-bold">Stock Status: </span> {userData.stockStatus}</p>
+      <p className="text-2xl"><span className="font-bold">Sub Category: </span>{userData.customization_example}</p>
+      </div>
+      <div className="flex gap-4 mt-4">
       <button className="btn btn-primary w-1/2">Update</button>
       <button className="btn btn-secondary w-1/2">Delete</button>
       </div>
