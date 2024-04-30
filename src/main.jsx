@@ -17,11 +17,13 @@ import UpdateProfile from './Pages/UpdateProfile/UpdateProfile.jsx';
 import PrivateRoute from './Components/PrivateRoute/PrivateRoute.jsx';
 import SingleItem from './Pages/SingleItem/SingleItem.jsx';
 import SingleItemUpdate from './Pages/Home/SingelItemUpdate/SingleItemUpdate.jsx';
+import Error from './Pages/Error/Error.jsx';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root></Root>,
+    errorElement: <Error></Error>,
     children : [
       {
         path: '/',
