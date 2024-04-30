@@ -13,6 +13,10 @@ const SingleItem = () => {
     .then(data => setUserData(data))
   }, [id]);
 
+  const handleDelete = () =>{
+
+  }
+
   console.log(id);
   console.log(userData);
 
