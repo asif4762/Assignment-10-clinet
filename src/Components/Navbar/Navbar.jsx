@@ -114,7 +114,7 @@ const Navbar = () => {
           <input onChange={handleToggle} type="checkbox" value="synthwave" className="toggle theme-controller bg-base-content row-start-1 col-start-1 col-span-2" />
           <svg className="col-start-1 row-start-1 stroke-base-100 fill-base-100" xmlns="http://www.w3.org/2000/svg" width="14" />
         </label>
-        <Tooltip id="my-tooltip" /> {/* Tooltip component */}
+        <Tooltip id="my-tooltip" />
       </div>
     </div>
   );
