@@ -30,7 +30,7 @@ const SingleItemUpdate = () => {
             rating,
             stockStatus,
             User_Name,
-            customization_example
+            customization_example,
         }
 
         console.log(info);
