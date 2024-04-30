@@ -5,7 +5,7 @@ const AllArtAndCraftItems = () => {
     const [allArts, setAllArts] = useState([]);
     
     useEffect(() => {
-        fetch('http://localhost:5500/all-arts')
+        fetch('https://assignemnt-10-server.vercel.app/all-arts')
         .then(res => res.json())
         .then(data => setAllArts(data))
     })

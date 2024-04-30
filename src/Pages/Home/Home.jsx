@@ -5,7 +5,7 @@ import Banner from "../../Components/Banner/Banner";
 const Home = () => {
 const [userData, setUserData] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5500/all-arts')
+        fetch('https://assignemnt-10-server.vercel.app/all-arts')
         .then(res => res.json())
         .then(data => setUserData(data))
     }, [])

@@ -8,7 +8,7 @@ const SingleItem = () => {
   const {id} = useParams();
 
   useEffect(() => {
-    fetch(`http://localhost:5500/all-arts/${id}`)
+    fetch(`https://assignemnt-10-server.vercel.app/all-arts/${id}`)
     .then(res => res.json())
     .then(data => setUserData(data))
   }, [id]);

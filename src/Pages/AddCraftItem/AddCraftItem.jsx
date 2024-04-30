@@ -35,7 +35,7 @@ const AddCraftItem = () => {
         }
 
 
-        fetch('http://localhost:5500/all-arts', {
+        fetch('https://assignemnt-10-server.vercel.app/all-arts', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json',

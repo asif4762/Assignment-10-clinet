@@ -9,7 +9,7 @@ const MyArtAndCraftList = () => {
     const [control, setControl] = useState(false);
 
     useEffect(() => {
-        fetch(`http://localhost:5500/myArts/${user.email}`)
+        fetch(`https://assignemnt-10-server.vercel.app/myArts/${user.email}`)
             .then(res => res.json())
             .then(data => {
                 setMyArts(data); 
@@ -30,7 +30,7 @@ const MyArtAndCraftList = () => {
             confirmButtonText: "Yes, delete it!"
           }).then((result) => {
             if (result.isConfirmed) {
-               fetch(`http://localhost:5500/delete/${id}`, {
+               fetch(`https://assignemnt-10-server.vercel.app/delete/${id}`, {
             method: 'DELETE',
         })
         .then(res => res.json())
