@@ -5,7 +5,7 @@ import Banner from "../../Components/Banner/Banner";
 const Home = () => {
 const [userData, setUserData] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5500/allCarts')
+        fetch('http://localhost:5500/all-arts')
         .then(res => res.json())
         .then(data => setUserData(data))
     }, [])

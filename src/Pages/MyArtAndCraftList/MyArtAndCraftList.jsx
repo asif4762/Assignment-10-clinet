@@ -1,17 +1,30 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Cards from "../../Components/Cards/Cards";
+import { AuthContext } from "../../AuthProvider/AuthProvider";
+
+
 
 
 const MyArtAndCraftList = () => {
+    const {user} = useContext(AuthContext);
 
     const [myArts, setMyArts] = useState([]);
 
-    useEffect(() =>{
-        fetch('http://localhost:5500/my-arts')
-        .then(res => res.json())
-        .then(data => setMyArts(data))
-    }, [])
-    console.log(myArts)
+     
+    
+    useEffect(() => {
+        fetch(`http://localhost:5500/myArts/${user.email}`)
+            .then(res => res.json())
+            .then(data => {
+                setMyArts(data); 
+                console.log(data); 
+            })
+            .catch(error => console.error('Error fetching my arts:', error));
+    }, [user]);
+    
+    
+    
+    console.log(user.email)
 
     return (
         <div>

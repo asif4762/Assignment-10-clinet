@@ -15,6 +15,7 @@ import Register from './Pages/Register/Register.jsx';
 import AuthProvider from './AuthProvider/AuthProvider.jsx';
 import UpdateProfile from './Pages/UpdateProfile/UpdateProfile.jsx';
 import PrivateRoute from './Components/PrivateRoute/PrivateRoute.jsx';
+import SingleItem from './Pages/SingleItem/SingleItem.jsx';
 
 const router = createBrowserRouter([
   {
@@ -30,30 +31,37 @@ const router = createBrowserRouter([
         element: <AllArtAndCraftItems></AllArtAndCraftItems>
       },
       {
-        path: 'Add-Art',
+        path: '/Add-Art',
         element: <PrivateRoute>
           <AddCraftItem></AddCraftItem>
         </PrivateRoute>
       },
       {
-        path: 'My-Art',
+        path: '/My-Art',
         element: <PrivateRoute>
           <MyArtAndCraftList></MyArtAndCraftList>
         </PrivateRoute>
       },
       {
-        path: 'login',
+        path: '/login',
         element: <Login></Login>
       },
       {
-        path: 'Register',
+        path: '/Register',
         element: <Register></Register>
       },
       {
-        path: 'update-profile',
+        path: '/update-profile',
         element: <PrivateRoute>
           <UpdateProfile></UpdateProfile>
         </PrivateRoute>
+      },
+      {
+        path: '/single-item/:id',
+        element: <PrivateRoute>
+          <SingleItem></SingleItem>
+        </PrivateRoute>
+        
       }
     ]
   }
