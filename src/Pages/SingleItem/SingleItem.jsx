@@ -38,7 +38,6 @@ const SingleItem = () => {
       </div>
       <div className="flex gap-4 mt-4">
       <Link className="w-full" to={`/single-item-update/${id}`}><button className="btn btn-primary w-full">Update</button></Link>
-      <button onClick={() => handleDelete(id)} className="btn btn-secondary w-1/2">Delete</button>
       </div>
     </div>
   </div>

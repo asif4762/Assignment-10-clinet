@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
+import Swal from "sweetalert2";
 
 const MyArtAndCraftList = () => {
     const { user } = useContext(AuthContext);
@@ -18,7 +19,18 @@ const MyArtAndCraftList = () => {
     }, [myArts, control]);
     
     const handleDelete = id => {
-        fetch(`http://localhost:5500/delete/${id}`, {
+
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete it!"
+          }).then((result) => {
+            if (result.isConfirmed) {
+               fetch(`http://localhost:5500/delete/${id}`, {
             method: 'DELETE',
         })
         .then(res => res.json())
@@ -26,10 +38,19 @@ const MyArtAndCraftList = () => {
             console.log("Delete Response:", data);
             if(data.deletedCount > 0)
             {
-                setControl(prev => !prev); // Toggle the control state
+                Swal.fire({
+                    title: "Deleted!",
+                    text: "Your file has been deleted.",
+                    icon: "success"
+                  });
+                setControl(prev => !prev);
             }
         })
         .catch(error => console.error('Error deleting item:', error));
+            }
+          });
+        
+       
     }
     
     console.log(user.email);
