@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import Cards from "../../Components/Cards/Cards";
-import { set } from "firebase/database";
 
 const AllArtAndCraftItems = () => {
     const [allArts, setAllArts] = useState([]);

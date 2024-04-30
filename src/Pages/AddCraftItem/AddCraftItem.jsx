@@ -107,10 +107,10 @@ const AddCraftItem = () => {
                 type="text"
                 placeholder="select"
               >
-                <option value="Test" selected>
+                <option value="Yes" selected>
                   Yes
                 </option>
-                <option value="Test2" selected>
+                <option value="No" selected>
                   No
                 </option>
               </select>

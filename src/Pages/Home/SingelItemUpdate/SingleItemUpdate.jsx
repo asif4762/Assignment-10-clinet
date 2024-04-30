@@ -1,12 +1,56 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { json, useParams } from "react-router-dom";
+import { AuthContext } from "../../../AuthProvider/AuthProvider";
 
 
 const SingleItemUpdate = () => {
-    const [user, setUserData] = useState([]);
+
+    const handleUpdateProduct = event =>{
+        event.preventDefault();
+        const form = event.target;
+        const item_name = form.name.value;
+        const subcategory_Name = form.subcategory.value;
+        const imageURL = form.image.value;
+        const price = form.price.value;
+        const shortdescription = form.shortDescription.value;
+        const processing_time = form.processingTime.value;
+        const User_Email = user.email;
+        const rating = form.rating.value;
+        const stockStatus = form.brand.value;
+        const User_Name = user.displayName;
+        const customization_example = form.customization.value
+
+        const info = {item_name,
+            imageURL,
+            price,
+            shortdescription,
+            processing_time,
+            subcategory_Name,
+            User_Email,
+            rating,
+            stockStatus,
+            User_Name,
+            customization_example
+        }
+
+        console.log(info);
+        fetch(`http://localhost:5500/updateProduct/${id}`,{
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json',
+            },
+            body:JSON.stringify(info),
+        })
+        .then(res => res.json())
+        .then(data => console.log(data))
+    }
+
+    const [userData, setUserData] = useState([]);
     const {id} = useParams();
 
     console.log('id' , id);
+
+    const {user} = useContext(AuthContext);
 
     console.log('User Data', user);
 
@@ -35,7 +79,7 @@ const SingleItemUpdate = () => {
           </p>
         </div>
         {/* form */}
-        <form>
+        <form onSubmit={handleUpdateProduct}>
           <div className="flex gap-8 ">
             <div className="flex-1">
               <label className="block mb-2 dark:text-white" htmlFor="name">
@@ -47,7 +91,7 @@ const SingleItemUpdate = () => {
                 placeholder="Name"
                 id="name"
                 name="name"
-                defaultValue={'asif'}
+                defaultValue={userData.item_name}
               />
 
               <label
@@ -62,6 +106,7 @@ const SingleItemUpdate = () => {
                 className="w-full p-2 border rounded-md focus:outline-[#FF497C]"
                 type="text"
                 placeholder="select"
+                defaultValue={userData.customization_example}
               >
                 <option value="Test" selected>
                   Yes
@@ -83,6 +128,7 @@ const SingleItemUpdate = () => {
                 placeholder="Enter Price"
                 id="Price"
                 name="price"
+                defaultValue={userData.price}
               />
               <label
                 className="block mt-4 mb-2 dark:text-white"
@@ -96,6 +142,7 @@ const SingleItemUpdate = () => {
                 placeholder="Processing Time"
                 id="processingTime"
                 name="processingTime"
+                defaultValue={userData.processing_time}
               />
               <label
                 className="block mt-4 mb-2 dark:text-white"
@@ -106,10 +153,11 @@ const SingleItemUpdate = () => {
               <input
                 className="w-full font-bold p-2 border rounded-md focus:outline-[#FF497C]"
                 type="text"
-                placeholder={user.email}
+                placeholder={userData.User_Email}
                 id="email"
                 name="email"
                 readOnly
+                defaultValue={userData.User_Email}
               />
               <label
                 className="block mt-4 mb-2 dark:text-white"
@@ -129,6 +177,7 @@ const SingleItemUpdate = () => {
                 placeholder="Enter Image URL"
                 id="image"
                 name="image"
+                defaultValue={userData.imageURL}
               />
               <label className="block mb-2 mt-4 dark:text-white" htmlFor="type">
                 SubCategory Name
@@ -139,6 +188,7 @@ const SingleItemUpdate = () => {
                 placeholder="Enter type"
                 id="subcategory"
                 name="subcategory"
+                defaultValue={userData.subcategory_Name}
               />
 
               <label
@@ -156,6 +206,7 @@ const SingleItemUpdate = () => {
                 placeholder="Enter Rating"
                 id="rating"
                 name="rating"
+                defaultValue={userData.rating}
               />
               <label
                 className="block mt-4 mb-2 dark:text-white"
@@ -169,6 +220,7 @@ const SingleItemUpdate = () => {
                 className="w-full p-2 border rounded-md focus:outline-[#FF497C]"
                 type="text"
                 placeholder="Select"
+                defaultValue={userData.stockStatus}
               >
                 <option value="In Stock" selected>
                   In Stock
@@ -183,19 +235,21 @@ const SingleItemUpdate = () => {
               <input
                 className="w-full text-black font-bold p-2 border rounded-md focus:outline-[#FF497C]"
                 type="text"
-                placeholder={user.displayName}
+                placeholder={userData.User_Name}
                 id="type"
                 name="userName"
                 readOnly
+                defaultValue={userData.User_Name}
               />
             </div>
           </div>
 
-          <textarea className="textarea textarea-bordered w-full" name="shortDescription" placeholder="Short Description"></textarea>
+          <textarea className="textarea textarea-bordered w-full" name="shortDescription" placeholder="Short Description" defaultValue={userData.shortdescription
+}></textarea>
           <input
             className="px-4 w-full py-2 mt-4 rounded hover:bg-[#ab3154]  bg-[#FF497C] duration-200 text-white cursor-pointer font-semibold"
             type="submit"
-            value="Add Product"
+            value="Update Product"
           />
         </form>
       </div>
