@@ -16,6 +16,7 @@ import AuthProvider from './AuthProvider/AuthProvider.jsx';
 import UpdateProfile from './Pages/UpdateProfile/UpdateProfile.jsx';
 import PrivateRoute from './Components/PrivateRoute/PrivateRoute.jsx';
 import SingleItem from './Pages/SingleItem/SingleItem.jsx';
+import SingleItemUpdate from './Pages/Home/SingelItemUpdate/SingleItemUpdate.jsx';
 
 const router = createBrowserRouter([
   {
@@ -62,6 +63,13 @@ const router = createBrowserRouter([
           <SingleItem></SingleItem>
         </PrivateRoute>
         
+      },
+      {
+        path: '/single-item-update/:id',
+        element: <PrivateRoute>
+
+          <SingleItemUpdate></SingleItemUpdate>
+        </PrivateRoute>
       }
     ]
   }

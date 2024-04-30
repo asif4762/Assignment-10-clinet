@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 const SingleItem = () => {
+
   const [userData, setUserData] = useState([]);
 
   const {id} = useParams();
@@ -36,7 +37,7 @@ const SingleItem = () => {
       <p className="text-2xl"><span className="font-bold">Sub Category: </span>{userData.customization_example}</p>
       </div>
       <div className="flex gap-4 mt-4">
-      <button className="btn btn-primary w-1/2">Update</button>
+      <Link className="w-full" to={`/single-item-update/${id}`}><button className="btn btn-primary w-full">Update</button></Link>
       <button className="btn btn-secondary w-1/2">Delete</button>
       </div>
     </div>

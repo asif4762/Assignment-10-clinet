@@ -1,65 +1,20 @@
-import { useContext } from "react";
-import { AuthContext } from "../../AuthProvider/AuthProvider";
-import Swal from "sweetalert2";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 
 
-const AddCraftItem = () => {
+const SingleItemUpdate = () => {
+    const [user, setUserData] = useState([]);
+    const {id} = useParams();
 
-    const handleAddProduct = (event) => {
-        event.preventDefault();
-        const form = event.target;
-        const item_name = form.name.value;
-        const subcategory_Name = form.subcategory.value;
-        const imageURL = form.image.value;
-        const price = form.price.value;
-        const shortdescription = form.shortDescription.value;
-        const processing_time = form.processingTime.value;
-        const User_Email = user.email;
-        const rating = form.rating.value;
-        const stockStatus = form.brand.value;
-        const User_Name = user.displayName;
-        const customization_example = form.customization.value
- 
-    
-        const info = {item_name,
-            imageURL,
-            price,
-            shortdescription,
-            processing_time,
-            subcategory_Name,
-            User_Email,
-            rating,
-            stockStatus,
-            User_Name,
-            customization_example
-        }
+    console.log('id' , id);
 
+    console.log('User Data', user);
 
-        fetch('http://localhost:5500/all-arts', {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json',
-            },
-            body: JSON.stringify(info)
-        })
+    useEffect(() => {
+        fetch(`http://localhost:5500/all-arts/${id}`)
         .then(res => res.json())
-        .then(data => {
-            if(data.insertedId)
-        {
-            Swal.fire({
-                title: "Product Added Successfully",
-                text: "You clicked the button!",
-                icon: "success"
-              });
-              form.reset();
-        }
-        })
-        
-    };
-    
-
-    const {user} = useContext(AuthContext);
-    console.log(user);
+        .then(data => setUserData(data))
+      }, [id]);
 
     return (
         <div>
@@ -80,7 +35,7 @@ const AddCraftItem = () => {
           </p>
         </div>
         {/* form */}
-        <form onSubmit={handleAddProduct}>
+        <form>
           <div className="flex gap-8 ">
             <div className="flex-1">
               <label className="block mb-2 dark:text-white" htmlFor="name">
@@ -92,6 +47,7 @@ const AddCraftItem = () => {
                 placeholder="Name"
                 id="name"
                 name="name"
+                defaultValue={'asif'}
               />
 
               <label
@@ -154,7 +110,6 @@ const AddCraftItem = () => {
                 id="email"
                 name="email"
                 readOnly
-                defaultValue={user.email}
               />
               <label
                 className="block mt-4 mb-2 dark:text-white"
@@ -231,7 +186,6 @@ const AddCraftItem = () => {
                 placeholder={user.displayName}
                 id="type"
                 name="userName"
-                defaultValue={user.displayName}
                 readOnly
               />
             </div>
@@ -250,4 +204,4 @@ const AddCraftItem = () => {
     );
 };
 
-export default AddCraftItem;
+export default SingleItemUpdate;
