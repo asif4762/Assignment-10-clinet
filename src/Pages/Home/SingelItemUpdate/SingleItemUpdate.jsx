@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { json, useParams } from "react-router-dom";
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
+import Swal from "sweetalert2";
 
 
 const SingleItemUpdate = () => {
@@ -42,7 +43,18 @@ const SingleItemUpdate = () => {
             body:JSON.stringify(info),
         })
         .then(res => res.json())
-        .then(data => console.log(data))
+        .then(data => {
+            console.log(data);
+            if(data.modifiedCount > 0)
+        {
+            Swal.fire({
+                title: "Product Updated Successfully",
+                text: "You clicked the button!",
+                icon: "success"
+              });
+              form.reset();
+        }
+        })
     }
 
     const [userData, setUserData] = useState([]);
